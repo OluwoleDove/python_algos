@@ -13,7 +13,7 @@ def even_odd(i, j):
                 i = k
     except ValueError as e:
         print(e)
-    print(("ITERATING BETWEEN [0] AND [1]").format(i, j))
+    print(("ITERATING BETWEEN {0} AND {1}").format(i, j))
     return_list = []
     odd_num_list = [] #An empty list
     even_num_count = 0 #integer value for even number counts initialized to zero
@@ -23,68 +23,103 @@ def even_odd(i, j):
             odd_num_list.append(number)
         elif number % 2 == 0: #is number an even number, i.e is the remainder = 0?
             even_num_count += 1
-    return_list.append(odd_num_list, even_num_count)
+    return_list.append(odd_num_list)
+    return_list.append(even_num_count)
+    return return_list
 
-'''EXECUTING THE FUNCTION'''
+'''PROGRAM TO PRINT TRIANGLE OF CHARACTERS'''
+def char_tri(char, lim):
+    char = str(char)
+    try:
+        if char == "" or char == " " or isinstance(lim, int) == False:
+            raise ValueError("Your first input can't be empty and second input should be an integer.")
+    except ValueError as e:
+        print(e)
+    print("\nPRINTING A TRIANGLE OF CHARACTERS BY CALLING PRINT METHOD ONCE")
+    str_out = ""
+    main_str = ""
+
+    for i in range(1,lim+1):
+        str_out += char
+        main_str += str_out + "\n"
+    return main_str
+
+def multi_table(n):
+    try:
+        if isinstance(n, int) == False:
+            raise ValueError("Your first input can't be empty and second input should be an integer.")
+    except ValueError as e:
+        print(e)
+   
+    print("PRINTING MULTIPLICATION TABLE HORIZONTALLY")
+    num = 0
+    out_str = "" #Initializing output string
+    #Below are 12 instances of i and 144 instances of j
+
+    for i in range(1, n):
+        for j in range(1, n):
+            num = i*j
+            out_str += str(i) + " * " + str(j) + " = " + str(num) + "\n"
+        print(out_str)
+        out_str = "" #After eact complete j iterations, initialize output string again
+        print()
+
+    print("PRINTING MULTIPLICATION TABLE SIDE BY SIDE")
+
+    for i in range(1, n):
+        for j in range(1, n):
+            num = j*i
+            out_str += str(j) + "*" + str(i) + "=" + str(num) + "\t"
+        print(out_str)
+        out_str = "" #After each complete j iterations, initialize output string again    
+
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+        
+#FIBONACCI SERIES - THE RECURSIVE WAY
+def fibonacci(n):
+    if n == 0 or n == 1:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+
+#COMBINATION FUNCTION CALLING FACTORIAL FUNCTION
+def combination(n, r):
+    c_val = factorial(n)/(factorial(n-r)*factorial(r))
+    int_val = int(c_val)
+    return int_val
+
+
+#PASCAL_T FUNCTIOIN CALLS COMBINATION FUNCTION
+def pascal_T(n):
+    my_str = ""
+    for i in range(n+1):
+        val = combination(n, i)
+        my_str += str(val) + "     "
+    return my_str
+
+'''EXECUTING EVEN_ODD FUNCTION'''
+print("THIS PROGRAM OUTPUTS THE ODD NUMBERS AND THE COUNT OF EVEN BETWEEN TWO INTEGERS")
 i = int(input("The first integer number please: "))
 j = int(input("Your second integer number: "))
 even_odd = even_odd(i, j)
-print("Odd numbers are \n", even_odd[0])
+print(("The odd numbers are: \n{0} \nThe range contains {1} even numbers").format(even_odd[0], even_odd[1]))
 print()
-print("The count of even numbers are ", even_odd[1])
 
-####LET's PRINT TRIANGLES OF ASTERISKS
-print("\n")
-print("PRINTING A TRIANGLE OF ASTERISKS BY CALLING PRINT METHOD ACCORDING TO THE NUMBER OF ROWS")
-char = "*"
-str_out = ""
-for i in range(1,11):
-    str_out += char
-    print(str_out)
-    
-#LET'S CALL THE PRINT FUNCTION ONCE
-print("\n")
-print("PRINTING A TRIANGLE OF ASTERISKS BY CALLING PRINT METHOD ONCE")
-char = "*"
-str_out = ""
-main_str = ""
+'''CALLING FUNCTION TO PRINT TRIANGLE OF CHARACTERS'''
+print("LET'S HAVE A TRIANGLE OF CHARACTERS, SHALL WE?")
+i = str(input("Type a character please: "))
+j = int(input("Type an integer please: "))
+triangle = char_tri(i, j)
+print(triangle +'\n')
 
-for i in range(1,11):
-    str_out += char
-    main_str += str_out + "\n"
-print(main_str)
-
-##PRINT MULTIPLATION TABLE FROM 1 TO 12
-print("PRINTING 12 BY 12 MULTIPLICATION TABLE HORIZONTALLY")
-num = 0
-out_str = "" #Initializing output string
-#Below are 12 instances of i and 144 instances of j
-
-for i in range(1,13):
-    for j in range(1,13):
-        num = i*j
-        out_str += str(i) + " * " + str(j) + " = " + str(num) + "\n"
-    print(out_str)
-    out_str = "" #After eact complete j iterations, initialize output string again
-    print()
-
-        
-
-##PRINT MULTIPLATION TABLE FROM 1 TO 12
-print("PRINTING 12 BY 12 MULTIPLICATION TABLE SIDE BY SIDE")
-num = 0
-out_str = "" #Initializing output string
-#Below are 12 instances of i and 144 instances of j
-
-for i in range(1,13):
-    for j in range(1,13):
-        num = j*i
-        out_str += str(j) + "*" + str(i) + "=" + str(num) + "\t"
-    print(out_str)
-    out_str = "" #After each complete j iterations, initialize output string again    
-        
-    
-print(int(input("What is your age")))
+'''LET'S PRINT MULTIPLICATION TABLES'''
+print("\nLET'S GENERATE MULTIPLICATION TABLE")
+i = int(input("Enter a number please: "))
+multi_table(i)
 
 #PROGRAM ANAGRAM
 #Anagrams are words that are made up of the same letters but have different meanings
@@ -105,7 +140,8 @@ for i in range(len(A)): #Iteratively select each element in List A
                 break
     C.append(count == len(B[i]))
     count = 0
-print(C + '\n')
+print(C)
+print()
 
 
 #PROGRAM PALINDROME - A Palindrome is a word that spells the same in the same direcion
@@ -171,11 +207,6 @@ for i in range(len(strs[0])):
 
 print("Longest Prefix is " + pref)
 
-def factorial(n):
-    if n == 0:
-        return 1
-    else:
-        return n * factorial(n-1)
 #Testing the function
 print("PRINTING FACTORIAL")
 print(factorial(6))
@@ -193,15 +224,8 @@ if len(fib_list) < 2:
 print(fib_list)
 print()
 
-#FIBONACCI SERIES - THE RECURSIVE WAY
-def fibonacci(n):
-    if n == 0 or n == 1:
-        return n
-    else:
-        return fibonacci(n-1) + fibonacci(n-2)
-
 #fib_series CODE
-print('\nTHIS PROGRAM PRINTS FIBONNACY SERIES')
+print('\nTHIS PROGRAM PRINTS FIBONNACI SERIES')
 fib_series = []
 user_input = int(input("Type a number: "))
 for i in range(user_input):
@@ -211,22 +235,6 @@ print("PRINTING FIBONACCI")
 print(fib_series)        
 print(fibonacci(4))
 print()
-
-
-#COMBINATION FUNCTION CALLING FACTORIAL FUNCTION
-def combination(n, r):
-    c_val = factorial(n)/(factorial(n-r)*factorial(r))
-    int_val = int(c_val)
-    return int_val
-
-
-#PASCAL_T FUNCTIOIN CALLS COMBINATION FUNCTION
-def pascal_T(n):
-    my_str = ""
-    for i in range(n+1):
-        val = combination(n, i)
-        my_str += str(val) + "     "
-    return my_str
 
 #This program prints Pascal Triangle
 print("PRINTING PASCAL'S TRAINGLE")
