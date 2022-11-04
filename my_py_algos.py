@@ -4,7 +4,7 @@
 #AND A COUNT OF EVEN NUMBERS BETWEEN THE INTEGERS
 def even_odd(i, j):
     try:
-        if isinstance(i, int) == False or isinstance(j, int) == False:
+        if isinstance(i, int) == False and isinstance(j, int) == False:
             raise ValueError("Only Integer values please")
         else:
             if i > j:
@@ -13,6 +13,7 @@ def even_odd(i, j):
                 i = k
     except ValueError as e:
         print(e)
+    
     print(("ITERATING BETWEEN {0} AND {1}").format(i, j))
     return_list = []
     odd_num_list = [] #An empty list
@@ -31,10 +32,13 @@ def even_odd(i, j):
 def char_tri(char, lim):
     char = str(char)
     try:
-        if char == "" or char == " " or isinstance(lim, int) == False:
-            raise ValueError("Your first input can't be empty and second input should be an integer.")
+        if char == "" or char == " ":
+            raise ValueError("Your first input can't be empty")
+        elif isinstance(int(lim), int) == False:
+            raise ValueError("The limit should be an integer.")
     except ValueError as e:
         print(e)
+    lim = int(lim)
     print("\nPRINTING A TRIANGLE OF CHARACTERS BY CALLING PRINT METHOD ONCE")
     str_out = ""
     main_str = ""
@@ -77,6 +81,7 @@ def _bubble_sort(my_list):
 
 #MULTIPLICATION TABLE
 def multi_table(n):
+    n = int(n)
     try:
         if isinstance(n, int) == False:
             raise ValueError("Integer value alone please")
@@ -97,10 +102,10 @@ def multi_table(n):
         out_str = "" #After eact complete j iterations, initialize output string again
         print()
     print('\nYou can also have it side by side\n')
-    print("PRINTING 10 BY 12 MULTIPLICATION TABLE SIDE BY SIDE")
+    print("PRINTING 9 BY 12 MULTIPLICATION TABLE SIDE BY SIDE")
 
     for i in range(1, 13):
-        for j in range(1, 11):
+        for j in range(1, 10):
             num = j*i
             out_str += str(j) + "*" + str(i) + "=" + str(num) + "\t\t"
         print(out_str)
@@ -179,15 +184,15 @@ print()
 
 #CALLING FUNCTION TO PRINT TRIANGLE OF CHARACTERS
 print("LET'S HAVE A TRIANGLE OF CHARACTERS, SHALL WE?")
-i = str(input("Type a character please: "))
-j = int(input("Type an integer please: "))
+i = input("Type a character please: ")
+j = input("Type an integer please: ")
 triangle = char_tri(i, j)
 print(triangle +'\n')
 
 #LET'S PRINT MULTIPLICATION TABLES
 print("\nLET'S GENERATE MULTIPLICATION TABLE")
-i = int(input("Enter an integer number less than 11: "))
-multi_table(abs(i))
+i = input("Enter an integer number: ")
+multi_table(abs(int(i)))
 
 #PROGRAM ANAGRAM
 #Anagrams are words that are made up of the same letters but have different meanings
@@ -219,7 +224,7 @@ print(my_sorted_list)
 
 #PRINTING THE LONGEST PREFIX
 word_list = ["flower", "flow", "flight", "floor", "flood"]
-print(("\nChecking the longest prefist in the list {0}").format(strs))
+print(("\nChecking the longest prefist in the list {0}").format(word_list))
 _prefix = find_prefix(word_list)
 print("Longest Prefix is " + _prefix)
 
@@ -255,7 +260,7 @@ print()
 #This program prints Pascal Triangle
 print("PRINTING PASCAL'S TRAINGLE")
 user_input = int(input("Type an integer number: "))
-for i in range(user_input+1):
+for i in range(user_input):
     print(pascal_T(i).center(80))
 
 
@@ -267,7 +272,7 @@ new_list = []
 pascal_dict = {}
 pascal_tri = ''
 user_input = int(input("Type a number: "))
-for i in range(1, user_input):
+for i in range(1, user_input+1):
     col_list.append(unit_num)
     #Just using i to guage row lengths
     if len(col_list) == i:
