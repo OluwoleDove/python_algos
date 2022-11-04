@@ -44,10 +44,42 @@ def char_tri(char, lim):
         main_str += str_out + "\n"
     return main_str
 
+def check_anagram(A, B):
+    C = []
+    #Declare a count 'variable' and nitialize it to zero
+    count = 0
+    print()
+
+    for i in range(len(A)): #Iteratively select each element in List A
+        for j in range(len(A[i])): #Iteratively select the letters in each element
+            for k in range(len(B[i])): #Check for the letter in an element in B that has the same index as that of A
+                if A[i][j] == B[i][k]:
+                    count = count + 1
+                    break
+        C.append(count == len(B[i]))
+        count = 0
+    return C
+
+#SORTING FUNCTION
+def _bubble_sort(my_list):
+    sort_file = open('sorted.txt', 'w')
+    for i in range(len(my_list)-1):
+        for j in range(len(my_list)-1):
+            if my_list[j+1] < my_list[j]:
+                num = my_list[j]
+                my_list[j] = my_list[j+1]
+                my_list[j+1] = num
+    sort_file.write(str(my_list))
+    sort_file.close()
+    sort_file = open('sorted.txt', 'r')
+    sorted_list = sort_file.read()
+    return sorted_list
+
+#MULTIPLICATION TABLE
 def multi_table(n):
     try:
         if isinstance(n, int) == False:
-            raise ValueError("Your first input can't be empty and second input should be an integer.")
+            raise ValueError("Integer value alone please")
     except ValueError as e:
         print(e)
    
@@ -55,24 +87,60 @@ def multi_table(n):
     num = 0
     out_str = "" #Initializing output string
     #Below are 12 instances of i and 144 instances of j
-
-    for i in range(1, n):
-        for j in range(1, n):
+   
+    print("\nPRINTINF TABLES VERTICALLY")
+    for i in range(1, n+1):
+        for j in range(1, n+1):
             num = i*j
             out_str += str(i) + " * " + str(j) + " = " + str(num) + "\n"
         print(out_str)
         out_str = "" #After eact complete j iterations, initialize output string again
         print()
+    print('\nYou can also have it side by side\n')
+    print("PRINTING 10 BY 12 MULTIPLICATION TABLE SIDE BY SIDE")
 
-    print("PRINTING MULTIPLICATION TABLE SIDE BY SIDE")
-
-    for i in range(1, n):
-        for j in range(1, n):
+    for i in range(1, 13):
+        for j in range(1, 11):
             num = j*i
-            out_str += str(j) + "*" + str(i) + "=" + str(num) + "\t"
+            out_str += str(j) + "*" + str(i) + "=" + str(num) + "\t\t"
         print(out_str)
-        out_str = "" #After each complete j iterations, initialize output string again    
+        out_str = "" #After each complete j iterations, initialize output string again 
 
+def determine_palindrome(palindrome):
+    iter_count = len(palindrome)//2 #Floor division
+    truth_list = []
+    neg = -1
+    for x in range(iter_count):
+        #Comapre letters and append the boolean outcomes to the list
+        truth_list.append(palindrome[x] == palindrome[neg])
+        neg -= 1
+    print(truth_list)
+    if False in truth_list:
+        print(("{0} is not a palindrome").format(palindrome))
+    else:
+        print(("{0} is a palindrome").format(palindrome))
+
+def find_prefix(strs):
+    #BUBBLE SORT ALGORITHM
+    strs =  _bubble_sort(strs)
+    print(strs)
+
+    #CHCKING FOR PREFIXES
+    count = 0
+    pref = ""
+    for i in range(len(strs[0])):
+        for j in range(len(strs)-1):
+            letter = strs[j][i]
+            if strs[j][i] == strs[j+1][i]:
+                count += 1
+            else:
+                count -= 1
+        if count == len(strs)-1:
+            pref += letter
+        count = 0
+    return pref
+    
+#FACTORIAL FUNCTION
 def factorial(n):
     if n == 0:
         return 1
@@ -101,7 +169,7 @@ def pascal_T(n):
         my_str += str(val) + "     "
     return my_str
 
-'''EXECUTING EVEN_ODD FUNCTION'''
+#EXECUTING EVEN_ODD FUNCTION
 print("THIS PROGRAM OUTPUTS THE ODD NUMBERS AND THE COUNT OF EVEN BETWEEN TWO INTEGERS")
 i = int(input("The first integer number please: "))
 j = int(input("Your second integer number: "))
@@ -109,103 +177,51 @@ even_odd = even_odd(i, j)
 print(("The odd numbers are: \n{0} \nThe range contains {1} even numbers").format(even_odd[0], even_odd[1]))
 print()
 
-'''CALLING FUNCTION TO PRINT TRIANGLE OF CHARACTERS'''
+#CALLING FUNCTION TO PRINT TRIANGLE OF CHARACTERS
 print("LET'S HAVE A TRIANGLE OF CHARACTERS, SHALL WE?")
 i = str(input("Type a character please: "))
 j = int(input("Type an integer please: "))
 triangle = char_tri(i, j)
 print(triangle +'\n')
 
-'''LET'S PRINT MULTIPLICATION TABLES'''
+#LET'S PRINT MULTIPLICATION TABLES
 print("\nLET'S GENERATE MULTIPLICATION TABLE")
-i = int(input("Enter a number please: "))
-multi_table(i)
+i = int(input("Enter an integer number less than 11: "))
+multi_table(abs(i))
 
 #PROGRAM ANAGRAM
 #Anagrams are words that are made up of the same letters but have different meanings
-print("THIS PROGRAM COMPARES TWO LISTS TO CHECK FOR ANAGRAMS")
+print("THIS PROGRAM COMPARES TWO LISTS TO CHECK FOR ANAGRAMS\n Examples:")
 A = ["abode", "man", "live", "heart", "ear"]
 B = ["adobe", "nan", "evil", "earth", "car"]
+print('A = ["abode", "man", "live", "heart", "ear"]\nB = ["adobe", "nan", "evil", "earth", "car"]\n')
 #declare an empty list
-C = []
-#Declare a count 'variable' and nitialize it to zero
-count = 0
+anagram_check = check_anagram(A, B)
+print(anagram_check)
 print()
-
-for i in range(len(A)): #Iteratively select each element in List A
-    for j in range(len(A[i])): #Iteratively select the letters in each element
-        for k in range(len(B[i])): #Check for the letter in an element in B that has the same index as that of A
-            if A[i][j] == B[i][k]:
-                count = count + 1
-                break
-    C.append(count == len(B[i]))
-    count = 0
-print(C)
-print()
-
 
 #PROGRAM PALINDROME - A Palindrome is a word that spells the same in the same direcion
 '''Examples are level, racecar, saippuakivikauppias'''
 print("THIS PROGRAM CHECKS IF A WORD IS A PALINDROME")
-palindrome = input("Type a word: ")
-iter_count = len(palindrome)//2 #Floor division
-truth_list = []
-neg = -1
-for x in range(iter_count):
-    #Comapre letters and append the boolean outcomes to the list
-    truth_list.append(palindrome[x] == palindrome[neg])
-    neg -= 1
-print(truth_list)
-if False in truth_list:
-    print(("[0] is not a palindrome").format(palindrome))
-else:
-    print(("[0] is a palindrome").format(palindrome))
+print("A Palindrome is a word that spells the same in both directions.\n")
+word_strng = input("Type a word: ")
+result = determine_palindrome(word_strng)
+
 
 #PROGRAM SORT LIST
 print("THIS FUNTION SORTS A LIST IN ASCENDING ORDER")
 print()
-sort_file = open('sorted.txt', 'w')
-
-def _bubble_sort(my_list):
-    for i in range(len(my_list)-1):
-        for j in range(len(my_list)-1):
-            if my_list[j+1] < my_list[j]:
-                num = my_list[j]
-                my_list[j] = my_list[j+1]
-                my_list[j+1] = num
-    sort_file.write(str(my_list))
-    sort_file.close()
-    sort_file = open('sorted.txt', 'r')
-    sorted_list = sort_file.read()
-    return sorted_list
 
 my_list = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+print(('Sorting this list\n {0}').format(my_list))
 my_sorted_list = _bubble_sort(my_list)
 print(my_sorted_list)
 
 #PRINTING THE LONGEST PREFIX
-strs = ["flower", "flow", "flight", "floor", "flood"]
-#strs = ["dog", "racecar", "car"]
-
-#BUBBLE SORT ALGORITHM
-strs =  _bubble_sort(strs)
-print(strs)
-
-#CHCKING FOR PREFIXES
-count = 0
-pref = ""
-for i in range(len(strs[0])):
-    for j in range(len(strs)-1):
-        letter = strs[j][i]
-        if strs[j][i] == strs[j+1][i]:
-            count += 1
-        else:
-            count -= 1
-    if count == len(strs)-1:
-        pref += letter
-    count = 0
-
-print("Longest Prefix is " + pref)
+word_list = ["flower", "flow", "flight", "floor", "flood"]
+print(("\nChecking the longest prefist in the list {0}").format(strs))
+_prefix = find_prefix(word_list)
+print("Longest Prefix is " + _prefix)
 
 #Testing the function
 print("PRINTING FACTORIAL")
@@ -238,13 +254,13 @@ print()
 
 #This program prints Pascal Triangle
 print("PRINTING PASCAL'S TRAINGLE")
-user_input = int(input("Type a number: "))
+user_input = int(input("Type an integer number: "))
 for i in range(user_input+1):
     print(pascal_T(i).center(80))
 
 
 #Pascal Triangle - Every list starts and ends with 1
-print("ITERATIVELY GENERATING PASCAL'S TRIANGLE")
+print("NOW THAT WAS A FUNCTIONAL APPROACH TO IT.\nLET'S GENERATE PASCTAL'S TRIANGLE ITERATIVELY")
 unit_num = 1
 col_list = []
 new_list = []
@@ -277,4 +293,3 @@ for k in range(1, len(pascal_dict)+1):
     col_str = ' '.join([str(num) for num in pascal_dict[k]]).center(40)
     pascal_tri += col_str + "\n"
 print(pascal_tri)
-
