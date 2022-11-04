@@ -1,4 +1,4 @@
-''' THIS IS A COMPILATION OF SOME ALGORITHMS I WROTE IN PYTHON '''
+'''SOME ALGORITHMS I WROTE IN PYTHON '''
 
 #THIS PROGRAM TAKES TWO INTEGER NUMBERS AND RETURNS A LIST OF ODD NUMBERS 
 #AND A COUNT OF EVEN NUMBERS BETWEEN THE INTEGERS
@@ -174,127 +174,133 @@ def pascal_T(n):
         my_str += str(val) + "     "
     return my_str
 
-#EXECUTING EVEN_ODD FUNCTION
-print("THIS PROGRAM OUTPUTS THE ODD NUMBERS AND THE COUNT OF EVEN BETWEEN TWO INTEGERS")
-i = int(input("The first integer number please: "))
-j = int(input("Your second integer number: "))
-even_odd = even_odd(i, j)
-print(("The odd numbers are: \n{0} \nThe range contains {1} even numbers").format(even_odd[0], even_odd[1]))
-print()
+def test_algo():
+    #EXECUTING EVEN_ODD FUNCTION
+    print("THIS PROGRAM OUTPUTS THE ODD NUMBERS AND THE COUNT OF EVEN BETWEEN TWO INTEGERS")
+    i = int(input("The first integer number please: "))
+    j = int(input("Your second integer number: "))
+    even_odd_list = even_odd(i, j)
+    print(("The odd numbers are: \n{0} \nThe range contains {1} even numbers").format(even_odd_list[0], even_odd_list[1]))
+    print()
 
-#CALLING FUNCTION TO PRINT TRIANGLE OF CHARACTERS
-print("LET'S HAVE A TRIANGLE OF CHARACTERS, SHALL WE?")
-i = input("Type a character please: ")
-j = input("Type an integer please: ")
-triangle = char_tri(i, j)
-print(triangle +'\n')
+    #CALLING FUNCTION TO PRINT TRIANGLE OF CHARACTERS
+    print("LET'S HAVE A TRIANGLE OF CHARACTERS, SHALL WE?")
+    i = input("Type a character please: ")
+    j = input("Type an integer please: ")
+    triangle = char_tri(i, j)
+    print(triangle +'\n')
 
-#LET'S PRINT MULTIPLICATION TABLES
-print("\nLET'S GENERATE MULTIPLICATION TABLE")
-i = input("Enter an integer number: ")
-multi_table(abs(int(i)))
+    #LET'S PRINT MULTIPLICATION TABLES
+    print("\nLET'S GENERATE MULTIPLICATION TABLE")
+    i = input("Enter an integer number: ")
+    multi_table(abs(int(i)))
 
-#PROGRAM ANAGRAM
-#Anagrams are words that are made up of the same letters but have different meanings
-print("THIS PROGRAM COMPARES TWO LISTS TO CHECK FOR ANAGRAMS\n Examples:")
-A = ["abode", "man", "live", "heart", "ear"]
-B = ["adobe", "nan", "evil", "earth", "car"]
-print('A = ["abode", "man", "live", "heart", "ear"]\nB = ["adobe", "nan", "evil", "earth", "car"]\n')
-#declare an empty list
-anagram_check = check_anagram(A, B)
-print(anagram_check)
-print()
+    #PROGRAM ANAGRAM
+    #Anagrams are words that are made up of the same letters but have different meanings
+    print("THIS PROGRAM COMPARES TWO LISTS TO CHECK FOR ANAGRAMS\n Examples:")
+    A = ["abode", "man", "live", "heart", "ear"]
+    B = ["adobe", "nan", "evil", "earth", "car"]
+    print('A = ["abode", "man", "live", "heart", "ear"]\nB = ["adobe", "nan", "evil", "earth", "car"]\n')
+    #declare an empty list
+    anagram_check = check_anagram(A, B)
+    print(anagram_check)
+    print()
 
-#PROGRAM PALINDROME - A Palindrome is a word that spells the same in the same direcion
-'''Examples are level, racecar, saippuakivikauppias'''
-print("THIS PROGRAM CHECKS IF A WORD IS A PALINDROME")
-print("A Palindrome is a word that spells the same in both directions.\n")
-word_strng = input("Type a word: ")
-result = determine_palindrome(word_strng)
+    #PRINTING THE LONGEST PREFIX
+    word_list = ["flower", "flow", "flight", "floor", "flood"]
+    print(("\nChecking the longest prefist in the list {0}").format(word_list))
+    _prefix = find_prefix(word_list)
+    print("Longest Prefix is " + _prefix)
+
+    #PRINTING FACTORIAL
+    user_input = int(input("Type a number to print it's factorial: "))
+    print("PRINTING FACTORIAL")
+    print(factorial(user_input))
+    print()
+
+    #ITERATIVELY GENERATING FIBONACCI SERIES
+    print("LET'S ITERATIVELY PRINT FIRST 10 NUMBERS OF THE FIBONACCI SERIES")
+    fib_list = [0]
+    new_item = 1
+    if len(fib_list) < 2:
+        fib_list.append(new_item)
+        while len(fib_list) < 10:
+            new_item = fib_list[-1] + fib_list[-2]
+            fib_list.append(new_item)
+    print(fib_list)
+    print()
+
+    #fib_series CODE
+    print("\nNOW LET'S DO IT THE RECURSION WAY")
+    fib_series = []
+    user_input = int(input("Type a number: "))
+    for i in range(user_input):
+        fib_series.append(fibonacci(i))
+    #LET'S PRINT STUFF
+    print("PRINTING FIBONACCI")
+    print(fib_series)        
+    print(fibonacci(4))
+    print()
+
+    #PROGRAM PALINDROME - A Palindrome is a word that spells the same in the same direcion
+    #Examples are level, racecar, saippuakivikauppias
+    print("THIS PROGRAM CHECKS IF A WORD IS A PALINDROME")
+    print("A Palindrome is a word that spells the same in both directions.\n")
+    word_strng = input("Type a word: ")
+    result = determine_palindrome(word_strng)
 
 
 #PROGRAM SORT LIST
-print("THIS FUNTION SORTS A LIST IN ASCENDING ORDER")
-print()
+    print("THIS FUNTION SORTS A LIST IN ASCENDING ORDER")
+    print()
 
-my_list = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
-print(('Sorting this list\n {0}').format(my_list))
-my_sorted_list = _bubble_sort(my_list)
-print(my_sorted_list)
+    my_list = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+    print(('Sorting this list\n {0}').format(my_list))
+    my_sorted_list = _bubble_sort(my_list)
+    print(my_sorted_list)
 
-#PRINTING THE LONGEST PREFIX
-word_list = ["flower", "flow", "flight", "floor", "flood"]
-print(("\nChecking the longest prefist in the list {0}").format(word_list))
-_prefix = find_prefix(word_list)
-print("Longest Prefix is " + _prefix)
-
-#Testing the function
-print("PRINTING FACTORIAL")
-print(factorial(6))
-print()
-
-#ITERATIVELY GENERATING FIBONACCI SERIES
-print("FIRST 10 NUMBERS OF THE FIBONACCI SERIES")
-fib_list = [0]
-new_item = 1
-if len(fib_list) < 2:
-    fib_list.append(new_item)
-    while len(fib_list) < 10:
-        new_item = fib_list[-1] + fib_list[-2]
-        fib_list.append(new_item)
-print(fib_list)
-print()
-
-#fib_series CODE
-print('\nTHIS PROGRAM PRINTS FIBONNACI SERIES')
-fib_series = []
-user_input = int(input("Type a number: "))
-for i in range(user_input):
-    fib_series.append(fibonacci(i))
-#LET'S PRINT STUFF
-print("PRINTING FIBONACCI")
-print(fib_series)        
-print(fibonacci(4))
-print()
-
-#This program prints Pascal Triangle
-print("PRINTING PASCAL'S TRAINGLE")
-user_input = int(input("Type an integer number: "))
-for i in range(user_input):
-    print(pascal_T(i).center(80))
-
-
-#Pascal Triangle - Every list starts and ends with 1
-print("NOW THAT WAS A FUNCTIONAL APPROACH TO IT.\nLET'S GENERATE PASCTAL'S TRIANGLE ITERATIVELY")
-unit_num = 1
-col_list = []
-new_list = []
-pascal_dict = {}
-pascal_tri = ''
-user_input = int(input("Type a number: "))
-for i in range(1, user_input+1):
-    col_list.append(unit_num)
-    #Just using i to guage row lengths
-    if len(col_list) == i:
-        pascal_dict.update({i:col_list})
-        col_list = []
-    elif len(col_list)/2 == 1:
+    #This program prints Pascal Triangle
+    print("PRINTING PASCAL'S TRAINGLE")
+    user_input = int(input("Type an integer number: "))
+    for i in range(user_input):
+        print(pascal_T(i).center(80))
+    
+    #Pascal Triangle - Every list starts and ends with 1
+    print("NOW THAT WAS A FUNCTIONAL APPROACH TO IT.\nLET'S GENERATE PASCTAL'S TRIANGLE ITERATIVELY")
+    unit_num = 1
+    col_list = []
+    new_list = []
+    pascal_dict = {}
+    pascal_tri = ''
+    user_input = int(input("Type a number: "))
+    for i in range(1, user_input+1):
         col_list.append(unit_num)
-        pascal_dict.update({i:col_list})
-    else:
-        col_list = []
-        col_list.append(1)
-        new_list = pascal_dict[i-1]
-        for j in range(0, len(new_list)-1):
-            col_list.append(new_list[j] + new_list[j+1])
-        col_list.append(1)
-        pascal_dict.update({i:col_list})
-        col_list = []
+        #Just using i to guage row lengths
+        if len(col_list) == i:
+            pascal_dict.update({i:col_list})
+            col_list = []
+        elif len(col_list)/2 == 1:
+            col_list.append(unit_num)
+            pascal_dict.update({i:col_list})
+        else:
+            col_list = []
+            col_list.append(1)
+            new_list = pascal_dict[i-1]
+            for j in range(0, len(new_list)-1):
+                col_list.append(new_list[j] + new_list[j+1])
+            col_list.append(1)
+            pascal_dict.update({i:col_list})
+            col_list = []
 
-print(pascal_dict)
-print()
-print("PASCAL'S TRANGLE")
-for k in range(1, len(pascal_dict)+1):
-    col_str = ' '.join([str(num) for num in pascal_dict[k]]).center(40)
-    pascal_tri += col_str + "\n"
-print(pascal_tri)
+    print(pascal_dict)
+    print()
+    print("PASCAL'S TRANGLE")
+    for k in range(1, len(pascal_dict)+1):
+        col_str = '  '.join([str(num) for num in pascal_dict[k]]).center(40)
+        pascal_tri += col_str + "\n"
+    print(pascal_tri)
+
+check = input("Let's Start, shall we? Type 'Y' to start and 'N' to quit.\n")
+while check == "Y" or check == "y":
+    test_algo()
+    check = input("Ha-ha! Super you. Wanna try again? Y/N\n")
