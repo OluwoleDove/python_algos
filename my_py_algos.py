@@ -127,7 +127,7 @@ def determine_palindrome(palindrome):
 
 def find_prefix(strs):
     #BUBBLE SORT ALGORITHM
-    strs =  _bubble_sort(strs)
+    strs = _bubble_sort(strs)
     print(strs)
 
     #CHCKING FOR PREFIXES
@@ -143,6 +143,7 @@ def find_prefix(strs):
         if count == len(strs)-1:
             pref += letter
         count = 0
+    print(pref)
     return pref
     
 #FACTORIAL FUNCTION
@@ -174,6 +175,7 @@ def pascal_T(n):
         my_str += str(val) + "     "
     return my_str
 
+#THIS FUNCTION CALLS OTHER FUNCTIONS
 def test_algo():
     #EXECUTING EVEN_ODD FUNCTION
     print("THIS PROGRAM OUTPUTS THE ODD NUMBERS AND THE COUNT OF EVEN BETWEEN TWO INTEGERS")
@@ -208,7 +210,7 @@ def test_algo():
 
     #PRINTING THE LONGEST PREFIX
     word_list = ["flower", "flow", "flight", "floor", "flood"]
-    print(("\nChecking the longest prefist in the list {0}").format(word_list))
+    print("\nChecking the longest prefist in the list")
     _prefix = find_prefix(word_list)
     print("Longest Prefix is " + _prefix)
 
