@@ -125,25 +125,31 @@ def determine_palindrome(palindrome):
     else:
         print(("{0} is a palindrome").format(palindrome))
 
-def find_prefix(strs):
-    #BUBBLE SORT ALGORITHM
-    strs = _bubble_sort(strs)
-    print(strs)
+def find_prefix(_list):
+    #sorting the List
+    for i in range(len(_list)-1):
+        for j in range(len(_list)-1):
+            if len(_list[j+1]) < len(_list[j]):
+                _word = _list[j]
+                _list[j] = _list[j+1]
+                _list[j+1] = _word
+    print(_list)
 
     #CHCKING FOR PREFIXES
     count = 0
     pref = ""
-    for i in range(len(strs[0])):
-        for j in range(len(strs)-1):
-            letter = strs[j][i]
-            if strs[j][i] == strs[j+1][i]:
+    
+    for i in range(len(_list[0])):
+        for j in range(len(_list)-1):
+            letter = _list[j][i]
+            if _list[j][i] == _list[j+1][i]:
                 count += 1
             else:
                 count -= 1
-        if count == len(strs)-1:
+        if count == len(_list)-1:
             pref += letter
         count = 0
-    print(pref)
+
     return pref
     
 #FACTORIAL FUNCTION
@@ -210,9 +216,9 @@ def test_algo():
 
     #PRINTING THE LONGEST PREFIX
     word_list = ["flower", "flow", "flight", "floor", "flood"]
-    print("\nChecking the longest prefist in the list")
+    print("\nChecking the longest prefix in the list")
     _prefix = find_prefix(word_list)
-    print("Longest Prefix is " + _prefix)
+    print(("Longest Prefix is {0}").format(_prefix))
 
     #PRINTING FACTORIAL
     user_input = int(input("Type a number to print it's factorial: "))
@@ -240,8 +246,9 @@ def test_algo():
         fib_series.append(fibonacci(i))
     #LET'S PRINT STUFF
     print("PRINTING FIBONACCI")
-    print(fib_series)        
-    print(fibonacci(4))
+    print(fib_series)     
+    user_input = int(input("Type a number, let's get the Fibonacci value: "))   
+    print(fibonacci(user_input))
     print()
 
     #PROGRAM PALINDROME - A Palindrome is a word that spells the same in the same direcion
