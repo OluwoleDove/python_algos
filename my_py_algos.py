@@ -269,7 +269,7 @@ def test_algo():
     print(my_sorted_list)
 
     #This program prints Pascal Triangle
-    print("PRINTING PASCAL'S TRAINGLE")
+    print("PRINTING PASCAL'S TRIANGLE")
     user_input = int(input("Type an integer number: "))
     for i in range(user_input):
         print(pascal_T(i).center(80))
