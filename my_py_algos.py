@@ -260,7 +260,7 @@ def test_algo():
 
 
 #PROGRAM SORT LIST
-    print("THIS FUNTION SORTS A LIST IN ASCENDING ORDER")
+    print("THIS FUNCTION SORTS A LIST IN ASCENDING ORDER")
     print()
 
     my_list = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
