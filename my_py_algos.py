@@ -93,7 +93,7 @@ def multi_table(n):
     out_str = "" #Initializing output string
     #Below are 12 instances of i and 144 instances of j
    
-    print("\nPRINTINF TABLES VERTICALLY")
+    print("\nPRINTING TABLES VERTICALLY")
     for i in range(1, n+1):
         for j in range(1, n+1):
             num = i*j
