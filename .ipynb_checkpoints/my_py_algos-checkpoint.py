@@ -28,16 +28,6 @@ def even_odd(i, j):
     return_list.append(even_num_count)
     return return_list
 
-def multi_five(n):
-    if n == 0:
-        return 0
-    else:
-        if n % 5 == 0:
-            return n + multi_five(n-1)
-        else:
-            return multi_five(n-1)
-        
-
 '''PROGRAM TO PRINT TRIANGLE OF CHARACTERS'''
 def char_tri(char, lim):
     char = str(char)
@@ -183,7 +173,7 @@ def combination(n, r):
     return int_val
 
 
-#PASCAL_T FUNCTION CALLS COMBINATION FUNCTION
+#PASCAL_T FUNCTIOIN CALLS COMBINATION FUNCTION
 def pascal_T(n):
     my_str = ""
     for i in range(n+1):
@@ -200,10 +190,6 @@ def test_algo():
     even_odd_list = even_odd(i, j)
     print(("The odd numbers are: \n{0} \nThe range contains {1} even numbers").format(even_odd_list[0], even_odd_list[1]))
     print()
-
-    print("THIS PROGRAM OUTPUTS THE SUM OF THE MULITPLES OF FIVE BETWEEN A GIVEN RANGE")
-    i = int(input("The an integer number please: "))
-    print(f'The sum is {multi_five(i)}')
 
     #CALLING FUNCTION TO PRINT TRIANGLE OF CHARACTERS
     print("LET'S HAVE A TRIANGLE OF CHARACTERS, SHALL WE?")
