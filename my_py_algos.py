@@ -33,7 +33,7 @@ def multi_five(n):
         return 0
     else:
         if n % 5 == 0:
-            return n + multi_five(n-1)
+            return n + multi_five(n-5)
         else:
             return multi_five(n-1)
         
