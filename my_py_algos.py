@@ -135,32 +135,35 @@ def determine_palindrome(palindrome):
     else:
         print(("{0} is a palindrome").format(palindrome))
 
-def find_prefix(_list):
-    #sorting the List
-    for i in range(len(_list)-1):
-        for j in range(len(_list)-1):
-            if len(_list[j+1]) < len(_list[j]):
-                _word = _list[j]
-                _list[j] = _list[j+1]
-                _list[j+1] = _word
-    print(_list)
+#Return the longest prefix
+def find_prefix(my_list):
+    #Sort the list according to the lenght of its members
+    for i in range(len(my_list)-1):
+        for j in range(len(my_list)-1):
+            if len(my_list[j]) > len(my_list[j+1]):
+                this_string = my_list[j]
+                my_list[j] = my_list[j+1]
+                my_list[j+1] = this_string
 
-    #CHCKING FOR PREFIXES
-    count = 0
-    pref = ""
-    
-    for i in range(len(_list[0])):
-        for j in range(len(_list)-1):
-            letter = _list[j][i]
-            if _list[j][i] == _list[j+1][i]:
+    #FIND THE PREFIX
+    prefix_str = ""
+    count = 1
+    for i in range(len(my_list[0])):
+        letter = ""
+        for j in range(len(my_list)-1):
+            letter = my_list[j][i]
+            if my_list[j][i] == my_list[j+1][i]:
                 count += 1
             else:
                 count -= 1
-        if count == len(_list)-1:
-            pref += letter
-        count = 0
 
-    return pref
+        if count == len(my_list):
+            prefix_str += letter
+        else:
+            break
+        count = 1
+
+    return prefix_str
     
 #FACTORIAL FUNCTION
 def factorial(n):
@@ -230,9 +233,11 @@ def test_algo():
 
     #PRINTING THE LONGEST PREFIX
     word_list = ["flower", "flow", "flight", "floor", "flood"]
+    word_list = ['Floatation', 'Florida', 'Flooring', 'Flooding', 'Flowing']
+    word_list = ['Engineering', 'Engine', 'Engilded', 'Engirded', 'Enginous']
     print("\nChecking the longest prefix in the list")
-    _prefix = find_prefix(word_list)
-    print(("Longest Prefix is {0}").format(_prefix))
+    this_prefix = find_prefix(word_list)
+    print(("Longest Prefix is {0}").format(this_prefix))
 
     #PRINTING FACTORIAL
     user_input = int(input("Type a number to print it's factorial: "))
