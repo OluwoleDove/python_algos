@@ -194,6 +194,51 @@ def pascal_T(n):
         my_str += str(val) + "     "
     return my_str
 
+def pascalT_iter():
+    unit_num = 1
+    col_list = []
+    new_list = []
+    pascal_dict = {}
+    pascal_tri = ''
+    user_input = int(input("Type a number: "))
+    for i in range(1, user_input+1):
+        col_list.append(unit_num)
+        #Just using i to guage row lengths
+        if len(col_list) == i:
+            pascal_dict.update({i:col_list})
+            col_list = []
+        elif len(col_list)/2 == 1:
+            col_list.append(unit_num)
+            pascal_dict.update({i:col_list})
+        else:
+            col_list = []
+            col_list.append(1)
+            new_list = pascal_dict[i-1]
+            for j in range(0, len(new_list)-1):
+                col_list.append(new_list[j] + new_list[j+1])
+            col_list.append(1)
+            pascal_dict.update({i:col_list})
+            col_list = []
+
+    for k in range(1, len(pascal_dict)+1):
+        col_str = '  '.join([str(num) for num in pascal_dict[k]]).center(40)
+        pascal_tri += col_str + "\n"
+
+    return pascal_tri
+
+def find_sub_sequence(main_seq, sub_seq):
+    main_seq = main_seq.split(',')
+    sub_seq = sub_seq.split(',')
+    i = 0
+    j = 0
+    while i < len(sub_seq) and j < len(main_seq):
+        if sub_seq[i] == main_seq[j]:
+            i += 1 #don't increment i unless there's a match
+            print(i,j)
+        j += 1 #increment j anyway
+
+    return i == len(sub_seq)
+
 #THIS FUNCTION CALLS OTHER FUNCTIONS
 def test_algo():
     #EXECUTING EVEN_ODD FUNCTION
@@ -277,8 +322,7 @@ def test_algo():
     word_strng = input("Type a word: ")
     result = determine_palindrome(word_strng)
 
-
-#PROGRAM SORT LIST
+    #PROGRAM SORT LIST
     print("THIS FUNCTION SORTS A LIST IN ASCENDING ORDER.")
     print()
 
@@ -295,40 +339,18 @@ def test_algo():
     
     #Pascal Triangle - Every list starts and ends with 1
     print("NOW THAT WAS A FUNCTIONAL APPROACH TO IT.\nLET'S GENERATE PASCTAL'S TRIANGLE ITERATIVELY")
-    unit_num = 1
-    col_list = []
-    new_list = []
-    pascal_dict = {}
-    pascal_tri = ''
-    user_input = int(input("Type a number: "))
-    for i in range(1, user_input+1):
-        col_list.append(unit_num)
-        #Just using i to guage row lengths
-        if len(col_list) == i:
-            pascal_dict.update({i:col_list})
-            col_list = []
-        elif len(col_list)/2 == 1:
-            col_list.append(unit_num)
-            pascal_dict.update({i:col_list})
-        else:
-            col_list = []
-            col_list.append(1)
-            new_list = pascal_dict[i-1]
-            for j in range(0, len(new_list)-1):
-                col_list.append(new_list[j] + new_list[j+1])
-            col_list.append(1)
-            pascal_dict.update({i:col_list})
-            col_list = []
+    pascal_Tri = pascalT_iter()
+    print("\nPASCAL'S TRANGLE\n")
+    print(pascal_Tri)
 
-    print(pascal_dict)
-    print()
-    print("PASCAL'S TRANGLE")
-    for k in range(1, len(pascal_dict)+1):
-        col_str = '  '.join([str(num) for num in pascal_dict[k]]).center(40)
-        pascal_tri += col_str + "\n"
-    print(pascal_tri)
+    print("\nLET'S CHECK IF A LIST IS A SUB SEQUENCE OF ANOTHER\n")
+    mainSeq = input("Type the main sequence: ")
+    subSeq = input("Type the sub sequence: ")
+    outcome = find_sub_sequence(mainSeq, subSeq)
+    print(outcome)
 
-check = input("Let's Start, shall we? Type 'Y' to start and 'N' to quit.\n")
-while check == "Y" or check == "y":
-    test_algo()
-    check = input("Ha-ha! Super you. Wanna try again? Y/N\n")
+if __name__ == "__main__":
+    check = input("Let's Start, shall we? Type 'Y' to start and 'N' to quit.\n")
+    while check == "Y" or check == "y":
+        test_algo()
+        check = input("Ha-ha! Super you. Wanna try again? Y/N\n")
