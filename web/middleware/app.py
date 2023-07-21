@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
-import requests
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, origins="http://127.0.0.1:5000")
+
 
 # THIS PROGRAM TAKES TWO INTEGER NUMBERS AND RETURNS A LIST OF ODD NUMBERS 
 # AND A COUNT OF EVEN NUMBERS BETWEEN THE INTEGERS
